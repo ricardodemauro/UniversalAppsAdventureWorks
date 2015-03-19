@@ -24,37 +24,35 @@ namespace AdventureWorksCatalog.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class HomePage : Page
+    public sealed partial class CategoryPage : Page
     {
-        public HomePageViewModel ViewModel
+        public CategoryPageViewModel ViewModel
         {
             get
             {
                 if (DataContext == null)
                 {
-                    DataContext = new HomePageViewModel();
+                    DataContext = new CategoryPageViewModel();
                 }
-                return DataContext as HomePageViewModel;
+                return DataContext as CategoryPageViewModel;
             }
         }
 
-
-        public HomePage()
+        public CategoryPage()
         {
             this.InitializeComponent();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            var categoryId = (int)e.Parameter;
             ViewModel.Messenger.Subscribe<NavigateMessage>(MessageHandler.NavigateMessage);
-            await ViewModel.LoadAsync();
-            base.OnNavigatedTo(e);
+            await ViewModel.LoadAsync(categoryId);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             ViewModel.Messenger.Unsubscribe<NavigateMessage>(MessageHandler.NavigateMessage);
-            base.OnNavigatedFrom(e);
         }
 
         private void Product_Click(object sender, ItemClickEventArgs e)
