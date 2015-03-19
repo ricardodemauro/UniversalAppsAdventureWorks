@@ -1,0 +1,112 @@
+﻿<Page
+    x:Class="AdventureWorksCatalog.View.HomePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AdventureWorksCatalog.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="groupedProductsViewSource"
+                              Source="{Binding Categories}"
+                              IsSourceGrouped="True"
+                              ItemsPath="Products" />
+    </Page.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{Binding Company.BackgroundPath, Converter={StaticResource StringToImageConverter}}" Stretch="UniformToFill" />
+        </Grid.Background>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Hub Padding="40,40,0,0">
+            <Hub.Header>
+                <Grid Margin="0,20,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Stretch="Uniform" Grid.Column="1" Source="{Binding Company.LogoPath, Converter={StaticResource StringToImageConverter}}"/>
+                </Grid>
+            </Hub.Header>
+            <HubSection Width="780" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="{Binding Company.ImagePath, Converter={StaticResource StringToImageConverter}}" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <Grid Margin="80,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Background="#EA1E2324" Grid.Row="1">
+                            <StackPanel Margin="10" VerticalAlignment="Bottom">
+                                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="Wrap"  Text="{Binding Company.Name}"/>
+                                <HyperlinkButton NavigateUri="{Binding Company.Website}" Content="{Binding Company.Website}" Padding="-7,0,0,-10" Margin="0,10,0,0"/>
+                                <HyperlinkButton NavigateUri="{Binding Company.ContactEmail, Converter={StaticResource StringFormatConverter}, ConverterParameter='mailto:{0}'}" Content="{Binding Company.ContactEmail}" Padding="-7,0,0,-10" Margin="0,10,0,0"/>
+                                <TextBlock Margin="0,10,0,0" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Company.Telephone}"/>
+                                <TextBlock Margin="0,10,0,0" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding Company.Address}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Padding="80,30,0,44">
+                <DataTemplate>
+                    <GridView 
+                        ItemsSource="{Binding Source={StaticResource groupedProductsViewSource}}"
+                        SelectionMode="None"
+                        IsSwipeEnabled="false"
+                        ItemClick="Product_Click"
+                        IsItemClickEnabled="True">
+                        <GridView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Left" Width="400" Height="250">
+                                    <Border Background="#003D3D3D">
+                                        <Image Source="{Binding PhotoPath, Converter={StaticResource StringToImageConverter}}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Name}"/>
+                                    </Border>
+                                    <StackPanel VerticalAlignment="Bottom" Background="#EA1E2324" Height="55">
+                                        <TextBlock Text="{Binding Name}" Margin="10,7,10,0"/>
+                                        <StackPanel Margin="10,0" Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Price,Converter={StaticResource StringFormatConverter}, ConverterParameter='$ {0:0.00}'}"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal" Margin="0,0,40,0"/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <Button 
+                                                Command="{Binding DataContext.NavigateToCategoryCommand, ElementName=Page}"
+                                                CommandParameter="{Binding Id}"
+                                                FontWeight="{ThemeResource HubSectionHeaderThemeFontWeight}" 
+                                                FontSize="{ThemeResource HubSectionHeaderThemeFontSize}" 
+                                                Margin="0,0,0,20" 
+                                                AutomationProperties.Name="HeaderButton" 
+                                                Template="{StaticResource HeaderButtonTemplate}"
+                                                Content="{Binding Name}"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <VariableSizedWrapGrid Orientation="Vertical" Margin="0,0,80,0"/>
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                            </GroupStyle>
+                        </GridView.GroupStyle>
+                    </GridView>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</Page>

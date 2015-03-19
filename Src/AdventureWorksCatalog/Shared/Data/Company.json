@@ -1,0 +1,14 @@
+{
+  "Id": 1,
+  "Name": "Adventure Works Cycles",
+  "Address": "Rua da Aventura, 1234, São Paulo - SP",
+  "Telephone": "(11) 1234-1234",
+  "Website": "http://www.adventureworkscycles.com/",
+  "ContactEmail": "contato@adventureworks.com",
+  "DeveloperName": "Adventure Works Cycles IT",
+  "DeveloperEmail": "developers@adventureworks.com",
+  "PrivacyPolicy": "Este aplicativo não coleta nenhuma informação do usuário.",
+  "LogoPath": "Images/logo.png",
+  "ImagePath": "Images/image.jpg",
+  "BackgroundPath": "Images/background.jpg"
+}
