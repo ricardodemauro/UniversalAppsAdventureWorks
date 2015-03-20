@@ -5,4 +5,26 @@
     
     <local:StringFormatConverter x:Key="StringFormatConverter" />
     <local:StringToImageConverter x:Key="StringToImageConverter" />
+
+    <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="Button">
+        <Grid Background="Transparent">
+            <StackPanel Orientation="Horizontal">
+                <ContentPresenter x:Name="ContentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}"/>
+                <Path x:Name="IsHeaderInteractiveMarker" Data="M0.26,15.44 L1.85,15.44 L8.13,22.11 L1.85,28.78 L0.26,28.78 L6.54,22.11 z" Fill="{TemplateBinding Foreground}" Margin="9,0,0,0" Visibility="Collapsed"/>
+            </StackPanel>
+            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
+            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+        </Grid>
+    </ControlTemplate>
+
+    <Style TargetType="Button" x:Key="EmptyButton">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <ContentPresenter />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

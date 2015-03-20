@@ -1,9 +1,8 @@
-﻿using AdventureWorksCatalog.ViewModel.Messages;
-using System;
+﻿using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace AdventureWorksCatalog.Windows.ViewModel.Messages
+namespace AdventureWorksCatalog.ViewModel.Messages
 {
     public static class MessageHandler
     {

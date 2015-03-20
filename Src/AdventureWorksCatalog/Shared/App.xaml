@@ -10,6 +10,9 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Common/StylesWindows.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            
+            <x:String x:Key="AppName">Adventure Works Catalog</x:String>
+            <x:String x:Key="ShareName">Share</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

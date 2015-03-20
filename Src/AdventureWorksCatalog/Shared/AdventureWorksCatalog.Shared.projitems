@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CategoryPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Commands\DelegateCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\HomePageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Messages\MessageHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Messages\Messenger.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\Messages\NavigateMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ProductPageViewModel.cs" />

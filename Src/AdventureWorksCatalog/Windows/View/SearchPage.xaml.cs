@@ -1,7 +1,6 @@
 ﻿using AdventureWorksCatalog.Portable.Model;
 using AdventureWorksCatalog.ViewModel;
 using AdventureWorksCatalog.ViewModel.Messages;
-using AdventureWorksCatalog.Windows.ViewModel.Messages;
 using System;
 using System.Collections.Generic;
 using System.IO;
